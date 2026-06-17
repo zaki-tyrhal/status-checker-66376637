@@ -1,0 +1,5 @@
+# NE JAMAIS commiter les secrets ni l'état local
+config.env
+state.json
+__pycache__/
+*.pyc
