@@ -4,7 +4,12 @@ on:
   schedule:
     # Toutes les 15 min (minimum fiable sur GitHub ; "*/5" possible mais souvent retardé)
     - cron: "*/15 * * * *"
-  workflow_dispatch: {}   # bouton "Run workflow" pour tester à la main
+  workflow_dispatch:       # bouton "Run workflow" pour tester à la main
+    inputs:
+      watch:
+        description: "Cible à surveiller (test). Ex: short_stay_visa:study (ouvert) pour vérifier l'alerte."
+        required: false
+        default: "long_stay_visa:study"
 
 # Évite que deux exécutions se chevauchent
 concurrency:
@@ -25,7 +30,7 @@ jobs:
       - name: Vérifier l'ouverture (Long séjour -> Études)
         env:
           RUN_ONCE: "1"
-          WATCH_TARGETS: "long_stay_visa:study"
+          WATCH_TARGETS: ${{ github.event.inputs.watch || 'long_stay_visa:study' }}
           # Canaux locaux désactivés (pas d'écran sur le serveur GitHub)
           DESKTOP_ENABLED: "0"
           SOUND_ENABLED: "0"
