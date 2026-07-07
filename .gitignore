@@ -1,5 +1,6 @@
 # NE JAMAIS commiter les secrets ni l'état local
 config.env
 state.json
+crous-state.json
 __pycache__/
 *.pyc

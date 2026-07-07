@@ -1,0 +1,25 @@
+# Crous regions — one per line.
+#
+# Format:  id|name|api_url|viewer_url
+#
+#   id         stable short id used in state.json
+#   name       human-readable region name (used in alerts)
+#   api_url    the JSON search endpoint the SPA fetches. To find it: open
+#              viewer_url in a browser -> DevTools -> Network -> Fetch/XHR ->
+#              reload -> look for the request that returns JSON with a list of
+#              residences -> copy its full URL here.
+#   viewer_url the human-facing search page you want to be sent to on alert.
+#
+# The two values below use the *default* best-guess API path
+# (/api/tools/47/search). Until you've captured the real one via DevTools,
+# expect the monitor to report throttle HTML or non-JSON responses during
+# peak hours — that is fine, the script handles it.
+
+# --- Test endpoint (last year's archived tool id 42 — stable listings) -----
+# Useful to confirm the full parse + alert path; comment out for production.
+# To re-test: uncomment the test42 line below and run:
+#   CROUS_RUN_ONCE=1 python3 crous-monitor.py
+# test42|TEST archive /api/fr/search/42|https://trouverunlogement.lescrous.fr/api/fr/search/42|https://trouverunlogement.lescrous.fr/tools/47/search?locationName=TEST
+
+aubiere|Aubiere (63170)|https://trouverunlogement.lescrous.fr/api/tools/47/search?bounds=3.1002125_45.7643518_3.1541077_45.7396976|https://trouverunlogement.lescrous.fr/tools/47/search?bounds=3.1002125_45.7643518_3.1541077_45.7396976&locationName=Aubi%C3%A8re
+clermont|Clermont-Ferrand|https://trouverunlogement.lescrous.fr/api/tools/47/search?bounds=3.0532561_45.8183838_3.1721761_45.7556941|https://trouverunlogement.lescrous.fr/tools/47/search?bounds=3.0532561_45.8183838_3.1721761_45.7556941&locationName=Clermont-Ferrand

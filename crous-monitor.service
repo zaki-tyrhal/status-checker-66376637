@@ -1,0 +1,17 @@
+[Unit]
+Description=Crous housing monitor (trouverunlogement.lescrous.fr)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/projects/capago-monitor
+ExecStart=/usr/bin/python3 %h/projects/capago-monitor/crous-monitor.py
+Restart=always
+RestartSec=30
+# Needed so notify-send / paplay / xdg-open reach your graphical session:
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+
+[Install]
+WantedBy=default.target
